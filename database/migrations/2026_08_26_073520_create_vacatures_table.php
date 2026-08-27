@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('vacatures', function (Blueprint $table) {
+            $table->id();
+            $table->string('titel', 255);
+            $table->string('bedrijf', 255);
+            $table->string('plaats', 100);
+            $table->text('omschrijving');
+            $table->integer('salaris');
+            $table->boolean('fulltime')->default('true');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('vacatures');
+    }
+};

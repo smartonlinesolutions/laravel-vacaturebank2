@@ -10,3 +10,6 @@ Toon dat veld op de detailpagina met accolades. Bekijk de pagina.
 Toon het daarna met de uitroeptekens-variant. Bekijk de pagina opnieuw.
 Noteer het verschil in NOTITIES.md, in je eigen woorden.
 Antwoord: Er verschijnt een popup met de alert melding. Omdat ik de uitroeptekens-variant gebruik, wordt de script tag er niet uit gefilterd. Bij de standaard accolades versie wel en verschijnt er een lege string. 
+
+Vraag: Waarom gebruik je de teruggave van validate() om je model te vullen, en niet $request->all()?
+Antwoord: Omdat je vanuit validate() enkel terugkrijgt wat je zelf via fillable() hebt gedefinieerd wat opgeslagen en verwerkt mag worden. De functie $request->all() geeft alles terug wat in de input is meegegeven, ook zaken die je niet nodig hebt.
