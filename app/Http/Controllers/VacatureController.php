@@ -49,9 +49,12 @@ class VacatureController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $vacatures = Vacature::paginate(10);
+        $zoek = $request->query('search');
+
+        $vacatures = Vacature::when($zoek, fn ($q) => $q->where('titel', 'like', "%{$zoek}%"))->paginate(10);
+        $vacatures->appends(['search' => $zoek]);
         return view('vacatures.index')->with( 'vacatures', $vacatures );
     }
 
@@ -117,6 +120,12 @@ class VacatureController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $vacature = Vacature::findOrFail($id);
+        $vacature->delete();
+
+        session(['vacatures_melding' => 'Vacature verwijderd']);    
+
+        return redirect()
+            ->route('vacatures.index');
     }
 }

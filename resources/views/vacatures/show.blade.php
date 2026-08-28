@@ -12,6 +12,7 @@
     <h2>{{ $vacature->titel }} @if ( $vacature->fulltime ) (full-time) @endif </h2>
     <p><label>Bedrijf:</label> {{ $vacature->bedrijf }}</p>
     <p><label>Plaats:</label> {{ $vacature->plaats }}</p>
+    <p><label>Salaris:</label> {{ $vacature->salaris }}</p>
     <p><label>Fulltime:</label> {{ $vacature->fulltime ? "Ja" : "Nee" }}</p>
     <p><label>Omschrijving:</label> {{ $vacature->omschrijving }}</p>
     <hr />
