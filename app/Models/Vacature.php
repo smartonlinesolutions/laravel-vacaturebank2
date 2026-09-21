@@ -17,4 +17,8 @@ class Vacature extends Model
     public function bedrijf() {
         return $this->belongsTo(Bedrijf::class);
     }
+
+    public function tags() {
+        return $this->belongsToMany(Tag::class);
+    }
 }

@@ -24,5 +24,12 @@
             </a>
         </p>
     @endif
+
+    <h2>Tags</h2>
+    @forelse ($vacature->tags as $tag)
+        <span class="tag">{{ $tag->naam }}</span>
+    @empty
+        <p>Deze vacature heeft geen tags.</p>
+    @endforelse
     <hr />
 </x-layout>

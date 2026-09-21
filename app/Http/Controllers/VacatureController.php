@@ -88,7 +88,7 @@ class VacatureController extends Controller
     {
         abort_if(! $vacature, 404);
 
-        $vacature->load('bedrijf');
+        $vacature->load('bedrijf', 'tags');
 
         return view('vacatures.show')->with( 'vacature', $vacature );
     }
