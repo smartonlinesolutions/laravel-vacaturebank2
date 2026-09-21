@@ -1,24 +1,24 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\VacatureController;
 use App\Models\Vacature;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VacatureController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('welcome.index');
-
-Route::get('/hallo', function () {
-    return "Hallo Eyal";
-})->name('welcome.hello');
-
-/*Route::get('/vacatures', [VacatureController::class, 'index'])
-->name('vacatures.index');
-
-Route::get('vacatures/{id}', [VacatureController::class, 'show'])->whereNumber('id')->name('vacatures.show');
-
-Route::get('vacatures/nieuw', function() {
-    return "Nieuwe vacature";
-})->name('vacatures.nieuw');*/
+});
 
 Route::resource('vacatures', VacatureController::class);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
