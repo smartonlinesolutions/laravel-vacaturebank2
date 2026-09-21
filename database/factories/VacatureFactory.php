@@ -19,8 +19,6 @@ class VacatureFactory extends Factory
     {
         return [
             'titel' => fake('nl_NL')->jobTitle(),
-            'bedrijf' => fake('nl_NL')->company(),
-            'plaats' => fake('nl_NL')->city(),
             'omschrijving' => fake('nl_NL')->paragraph(),
             'salaris' => fake('nl_NL')->numberBetween(4000,8000),
             'fulltime' => fake()->boolean()

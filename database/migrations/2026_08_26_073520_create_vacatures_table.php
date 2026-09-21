@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('vacatures', function (Blueprint $table) {
             $table->id();
             $table->string('titel', 255);
-            $table->string('bedrijf', 255);
-            $table->string('plaats', 100);
             $table->text('omschrijving');
             $table->integer('salaris');
             $table->boolean('fulltime')->default('true');

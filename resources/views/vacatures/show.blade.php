@@ -10,10 +10,19 @@
     <hr />
 
     <h2>{{ $vacature->titel }} @if ( $vacature->fulltime ) (full-time) @endif </h2>
-    <p><label>Bedrijf:</label> {{ $vacature->bedrijf }}</p>
-    <p><label>Plaats:</label> {{ $vacature->plaats }}</p>
+    <p><label>Bedrijf:</label> {{ $vacature->bedrijf?->naam }}</p>
+    <p><label>Plaats:</label> {{ $vacature->bedrijf?->plaats }}</p>
     <p><label>Salaris:</label> {{ $vacature->salaris }}</p>
     <p><label>Fulltime:</label> {{ $vacature->fulltime ? "Ja" : "Nee" }}</p>
     <p><label>Omschrijving:</label> {{ $vacature->omschrijving }}</p>
+
+    @if ($vacature->bedrijf?->website)
+        <p>
+            Website:
+            <a href="{{ $vacature->bedrijf->website }}" target="_blank" rel="noopener">
+                {{ $vacature->bedrijf->website }}
+            </a>
+        </p>
+    @endif
     <hr />
 </x-layout>

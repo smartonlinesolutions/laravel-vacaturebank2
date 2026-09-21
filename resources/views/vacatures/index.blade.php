@@ -19,8 +19,8 @@
                 @if ( $vacature->fulltime ) (full-time) @endif 
             </a>
         </h2>
-        <p><label>Bedrijf:</label> {{ $vacature->bedrijf }}</p>
-        <p><label>Plaats:</label> {{ $vacature->plaats }}</p>
+        <p><label>Bedrijf:</label> {{ $vacature->bedrijf?->naam }}</p>
+        <p><label>Plaats:</label> {{ $vacature->bedrijf?->plaats }}</p>
         <p><label>Salaris:</label> {{ $vacature->salaris }}</p>
         <p><label>Fulltime:</label> {{ $vacature->fulltime ? "Ja" : "Nee" }}</p>
         <div class="delete">

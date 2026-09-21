@@ -53,7 +53,7 @@ class VacatureController extends Controller
     {
         $zoek = $request->query('search');
 
-        $vacatures = Vacature::when($zoek, fn ($q) => $q->where('titel', 'like', "%{$zoek}%"))->paginate(10);
+        $vacatures = Vacature::when($zoek, fn ($q) => $q->where('titel', 'like', "%{$zoek}%"))->with('bedrijf')->paginate(10);
         $vacatures->appends(['search' => $zoek]);
         return view('vacatures.index')->with( 'vacatures', $vacatures );
     }
@@ -87,6 +87,8 @@ class VacatureController extends Controller
     public function show(Vacature $vacature)
     {
         abort_if(! $vacature, 404);
+
+        $vacature->load('bedrijf');
 
         return view('vacatures.show')->with( 'vacature', $vacature );
     }

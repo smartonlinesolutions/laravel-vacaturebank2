@@ -11,7 +11,7 @@ class Vacature extends Model
     use HasFactory;
 
     protected $fillable = [ 
-        'titel', 'bedrijf', 'plaats', 'omschrijving', 'salaris', 'fulltime'
+        'titel', 'omschrijving', 'salaris', 'fulltime'
     ];
     
     public function bedrijf() {
