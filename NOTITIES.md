@@ -1,3 +1,10 @@
+ANTWOORDEN LESDAG 2
+Vraag: Waarom staat bedrijf_id in de tabel vacatures en niet andersom?
+Antwoord: Omdat een vacature uniek is en een bedrijf niet. Je koppelt een vacature aan een bedrijf, waarbij meerdere vacatures aan hetzelfde bedrijf gekoppeld kunnen worden. Als je het andersom zou doen en in de tabel bedrijf een vacature_id zou opnemen, dan kun je aan één bedrijf slechts één vacature toekennen.
+
+
+ANTWOORDEN LESDAG 1
+
 Vraag: Waarom staat .env niet in Git, terwijl .env.example er wel in staat?
 Antwoord: Omdat sommige credentials zoals database host en APP_ENV op verschillende omgevingen kunnen afwijken van elkaar. Lokaal heb ik local als APP_ENV en op productie wil ik production als APP_ENV. Als ik mijn .env toevoeg in Git dan wordt dit uitgecheckt op iedere omgeving waar ik de applicatie gebruik.
 

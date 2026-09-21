@@ -13,4 +13,8 @@ class Vacature extends Model
     protected $fillable = [ 
         'titel', 'bedrijf', 'plaats', 'omschrijving', 'salaris', 'fulltime'
     ];
+    
+    public function bedrijf() {
+        return $this->belongsTo(Bedrijf::class);
+    }
 }

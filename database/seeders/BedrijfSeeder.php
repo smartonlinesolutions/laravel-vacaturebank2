@@ -3,19 +3,16 @@
 namespace Database\Seeders;
 
 use App\Models\Bedrijf;
-use App\Models\Vacature;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class VacatureSeeder extends Seeder
+class BedrijfSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Vacature::factory()->count(25)->create([
-            'bedrijf_id' => fn () => Bedrijf::inRandomOrder()->value('id'),
-        ]);
+        Bedrijf::factory()->count(5)->create();
     }
 }
