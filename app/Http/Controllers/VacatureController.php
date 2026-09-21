@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Vacature;
 use App\Http\Requests\StoreVacancyRequest;
 
@@ -53,7 +54,7 @@ class VacatureController extends Controller
     {
         $zoek = $request->query('search');
 
-        $vacatures = Vacature::when($zoek, fn ($q) => $q->where('titel', 'like', "%{$zoek}%"))->with('bedrijf')->paginate(10);
+        $vacatures = Vacature::when($zoek, fn ($q) => $q->where('titel', 'like', "%{$zoek}%"))->with('bedrijf','tags')->paginate(10);
         $vacatures->appends(['search' => $zoek]);
         return view('vacatures.index')->with( 'vacatures', $vacatures );
     }

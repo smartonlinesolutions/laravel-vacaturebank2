@@ -23,6 +23,11 @@
         <p><label>Plaats:</label> {{ $vacature->bedrijf?->plaats }}</p>
         <p><label>Salaris:</label> {{ $vacature->salaris }}</p>
         <p><label>Fulltime:</label> {{ $vacature->fulltime ? "Ja" : "Nee" }}</p>
+
+        <h3>Tags</h3>
+        @foreach ($vacature->tags as $tag)
+            <span class="tag">{{ $tag->naam }}</span>
+        @endforeach
         <div class="delete">
             <form method="POST" action="{{ route('vacatures.destroy',$vacature->id) }}"
                 onsubmit="return confirm('Wil je deze vacature verwijderen?')">
