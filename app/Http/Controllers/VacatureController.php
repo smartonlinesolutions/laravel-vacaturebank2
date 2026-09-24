@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Vacature;
+use App\Models\Bedrijf;
 use App\Http\Requests\StoreVacancyRequest;
 
 class VacatureController extends Controller
@@ -64,8 +65,11 @@ class VacatureController extends Controller
      */
     public function create()
     {
+        $bedrijven = Bedrijf::orderBy('naam')->get();
+
         return view('vacatures.create', [
-            'vacature'    => new Vacature()
+            'vacature'    => new Vacature(),
+            'bedrijven'   => $bedrijven
         ]);
     }
 
@@ -74,7 +78,11 @@ class VacatureController extends Controller
      */
     public function store(StoreVacancyRequest $request)
     {
-        $vacature = Vacature::create($request->validated());
+        $data = $request->validated();
+
+        $vacature = $request->user()
+            ->vacatures()
+            ->create($data);
 
         session(['vacatures_melding' => 'Vacature aangemaakt']);    
 
@@ -89,7 +97,7 @@ class VacatureController extends Controller
     {
         abort_if(! $vacature, 404);
 
-        $vacature->load('bedrijf', 'tags');
+        $vacature->load('bedrijf', 'tags', 'user');
 
         return view('vacatures.show')->with( 'vacature', $vacature );
     }
@@ -99,8 +107,11 @@ class VacatureController extends Controller
      */
     public function edit(Vacature $vacature)
     {
+        $bedrijven = Bedrijf::orderBy('naam')->get();
+
         return view('vacatures.edit', [
-            'vacature' => $vacature
+            'vacature'  => $vacature,
+            'bedrijven' => $bedrijven
         ]);
     }
 

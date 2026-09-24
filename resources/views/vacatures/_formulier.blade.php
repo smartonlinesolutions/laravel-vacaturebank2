@@ -22,22 +22,21 @@
         </div>
 
         <div>
-            <label for="bedrijf">Bedrijf</label>
-            <input id="bedrijf" name="bedrijf" type="text"
-                   value="{{ old('bedrijf', $vacature?->bedrijf) }}"
-                   @error('bedrijf') aria-invalid="true" aria-describedby="bedrijf-error" @enderror>
-            @error('bedrijf')
-                <p id="bedrijf-error" class="error">{{ $message }}</p>
-            @enderror
-        </div>
+            <label for="bedrijf_id">Bedrijf</label>
+            <select name="bedrijf_id" id="bedrijf_id">
+                <option value="">-- Kies een bedrijf --</option>
+                @foreach ($bedrijven as $bedrijf)
+                    <option
+                        value="{{ $bedrijf->id }}"
+                        @selected(old('bedrijf_id', $vacature->bedrijf_id ?? null) == $bedrijf->id)
+                    >
+                        {{ $bedrijf->naam }} ({{ $bedrijf->plaats }})
+                    </option>
+                @endforeach
+            </select>
 
-        <div>
-            <label for="plaats">Plaats</label>
-            <input id="plaats" name="plaats" type="text"
-                   value="{{ old('plaats', $vacature?->plaats) }}"
-                   @error('plaats') aria-invalid="true" aria-describedby="plaats-error" @enderror>
-            @error('plaats')
-                <p id="plaats-error" class="error">{{ $message }}</p>
+            @error('bedrijf_id')
+                <p class="text-red-600">{{ $message }}</p>
             @enderror
         </div>
 

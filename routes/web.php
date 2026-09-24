@@ -11,6 +11,14 @@ Route::get('/', function () {
 
 Route::resource('vacatures', VacatureController::class);
 
+Route::resource('vacatures', VacatureController::class)
+    ->only(['index', 'show']);;
+
+Route::middleware('auth')->group(function () {
+    Route::resource('vacatures', VacatureController::class)
+        ->except(['index', 'show']);
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

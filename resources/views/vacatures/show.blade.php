@@ -25,6 +25,10 @@
         </p>
     @endif
 
+    <p>
+        Geplaatst door: {{ $vacature->user?->name ?? 'Onbekend' }}
+    </p>
+
     <h2>Tags</h2>
     @forelse ($vacature->tags as $tag)
         <span class="tag">{{ $tag->naam }}</span>

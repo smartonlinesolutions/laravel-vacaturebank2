@@ -11,7 +11,7 @@ class Vacature extends Model
     use HasFactory;
 
     protected $fillable = [ 
-        'titel', 'omschrijving', 'salaris', 'fulltime'
+        'titel', 'omschrijving', 'salaris', 'fulltime', 'bedrijf_id', 'user_id'
     ];
     
     public function bedrijf() {
@@ -20,5 +20,9 @@ class Vacature extends Model
 
     public function tags() {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }

@@ -24,10 +24,9 @@ class StoreVacancyRequest extends FormRequest
     {
         return [
             'titel' => ['required', 'string', 'max:255'],
-            'plaats' => ['required', 'string', 'max:100'],
-            'bedrijf' => ['required', 'string', 'max:255'],
             'salaris' => ['nullable', 'integer', 'between:0,20000'],
-            'omschrijving' => ['nullable', 'string']
+            'omschrijving' => ['nullable', 'string'],
+            'bedrijf_id'    => 'required|exists:bedrijven,id',
         ];
     }
 }
