@@ -86,6 +86,11 @@ class VacatureController extends Controller
 
         session(['vacatures_melding' => 'Vacature aangemaakt']);    
 
+        logger('Vacature aangemaakt', [
+            'id'   => $vacature->id,
+            'door' => $request->user()?->email,
+        ]);
+
         return redirect()
             ->route('vacatures.show', $vacature);
     }
