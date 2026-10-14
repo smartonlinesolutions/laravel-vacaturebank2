@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Vacature;
 use App\Http\Resources\VacatureResource;
+use App\Http\Requests\StoreVacancyRequest;
 use Illuminate\Http\Request;
 
 class VacatureApiController extends Controller
@@ -23,9 +24,14 @@ class VacatureApiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreVacancyRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $vacature = Vacature::create($data);    
+
+        return (new VacatureResource($vacature->load('bedrijf')))
+            ->response();
     }
 
     /**
@@ -47,8 +53,10 @@ class VacatureApiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Vacature $vacature)
     {
-        //
+        $vacature->delete();
+
+        return response()->noContent();
     }
 }
