@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Vacature;
 use Illuminate\Http\Request;
 
 class VacatureApiController extends Controller
@@ -12,7 +13,8 @@ class VacatureApiController extends Controller
      */
     public function index()
     {
-        //
+        return Vacature::with(['bedrijf', 'tags', 'user'])
+            ->paginate(10);
     }
 
     /**
@@ -26,9 +28,9 @@ class VacatureApiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Vacature $vacature)
     {
-        //
+        return $vacature->load('bedrijf', 'tags', 'user');
     }
 
     /**
