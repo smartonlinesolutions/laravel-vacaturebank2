@@ -17,7 +17,8 @@ class VacatureResource extends JsonResource
         return [
             'id'       => $this->id,
             'titel'    => $this->titel,
-            'plaats'   => $this->plaats,
+            'plaats'   => $this->whenLoaded('bedrijf',
+                fn () => $this->bedrijf->plaats),
             'salaris'  => $this->salaris,
             'fulltime' => $this->fulltime,
             'bedrijf'  => $this->whenLoaded('bedrijf',
