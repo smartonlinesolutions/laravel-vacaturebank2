@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Vacature;
+use App\Http\Resources\VacatureResource;
 use Illuminate\Http\Request;
 
 class VacatureApiController extends Controller
@@ -13,8 +14,10 @@ class VacatureApiController extends Controller
      */
     public function index()
     {
-        return Vacature::with(['bedrijf', 'tags', 'user'])
+        $vacatures = Vacature::with(['bedrijf', 'tags', 'user'])
             ->paginate(10);
+
+        return VacatureResource::collection($vacatures);
     }
 
     /**
@@ -30,7 +33,7 @@ class VacatureApiController extends Controller
      */
     public function show(Vacature $vacature)
     {
-        return $vacature->load('bedrijf', 'tags', 'user');
+        return new VacatureResource($vacature->load('bedrijf', 'tags', 'user'));
     }
 
     /**

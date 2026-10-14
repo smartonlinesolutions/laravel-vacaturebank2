@@ -2,6 +2,14 @@ ANTWOORDEN LESDAG 2
 Vraag: Waarom staat bedrijf_id in de tabel vacatures en niet andersom?
 Antwoord: Omdat een vacature uniek is en een bedrijf niet. Je koppelt een vacature aan een bedrijf, waarbij meerdere vacatures aan hetzelfde bedrijf gekoppeld kunnen worden. Als je het andersom zou doen en in de tabel bedrijf een vacature_id zou opnemen, dan kun je aan één bedrijf slechts één vacature toekennen.
 
+Vraag opdracht 3.3: Vergelijk de JSON van voor en na. Zet beide versies onder elkaar in NOTITIES.md.
+Antwoord: 
+Eerste versie, met alle informatie:
+{"id":1,"titel":"Metaalfrezer","omschrijving":"Et fugiat sint ex voluptate iste soluta. Inventore accusamus quidem vero non magnam nihil ut.","salaris":7217,"fulltime":0,"created_at":"2026-09-21T12:24:28.000000Z","updated_at":"2026-09-21T12:24:28.000000Z","bedrijf_id":1,"user_id":null,"bedrijf":{"id":1,"naam":"Tabakzaak van der Wal","plaats":"Beutenaken","website":null,"created_at":"2026-09-21T12:24:28.000000Z","updated_at":"2026-09-21T12:24:28.000000Z"},"tags":[{"id":3,"naam":"medior","created_at":"2026-09-21T12:24:28.000000Z","updated_at":"2026-09-21T12:24:28.000000Z","pivot":{"vacature_id":1,"tag_id":3}},{"id":5,"naam":"fulltime","created_at":"2026-09-21T12:24:28.000000Z","updated_at":"2026-09-21T12:24:28.000000Z","pivot":{"vacature_id":1,"tag_id":5}},{"id":6,"naam":"parttime","created_at":"2026-09-21T12:24:28.000000Z","updated_at":"2026-09-21T12:24:28.000000Z","pivot":{"vacature_id":1,"tag_id":6}}],"user":null}
+
+Tweede versie, met gebruik van de Resource:
+{"data":{"id":1,"titel":"Metaalfrezer","plaats":null,"salaris":7217,"fulltime":0,"bedrijf":"Tabakzaak van der Wal"}}
+
 
 ANTWOORDEN LESDAG 1
 
